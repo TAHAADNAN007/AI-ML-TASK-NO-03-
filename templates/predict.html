@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Predict</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 40px;">
+    <nav style="margin-bottom: 30px;">
+        <a href="/" style="margin-right: 20px;">Home</a>
+        <a href="/dashboard" style="margin-right: 20px;">Dashboard</a>
+        <a href="/predict">Predict</a>
+    </nav>
+
+    <h1>Predict Energy Consumption</h1>
+
+    <form method="post" action="/predict">
+        {% for f in features %}
+        <div style="margin-bottom: 10px;">
+            <label>{{ f }}: </label>
+            <input type="text" name="{{ f }}" required>
+        </div>
+        {% endfor %}
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction is not none %}
+    <h3>Predicted Usage_kWh: {{ prediction }}</h3>
+    {% endif %}
+</body>
+</html>
